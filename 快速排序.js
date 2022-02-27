@@ -1,3 +1,4 @@
+//
 function quickSort(arr, L = 0, R = arr.length - 1) {
   if (L >= R) return
   // 以最后一位的数为分界点
