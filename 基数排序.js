@@ -1,6 +1,6 @@
 function radixSort(arr, L = 0, R = arr.length - 1, digit = maxbit(arr)) {
   let radix = 10 //10为基底
-  let bucket = []
+  let bucket = Array(R + 1).fill(0)
   for (let d = 1; d <= digit; d++) {
     //有几位数，就要进出桶几次
     let count = Array(radix).fill(0) //用0填充数组，JS空数组默认值为undefined
