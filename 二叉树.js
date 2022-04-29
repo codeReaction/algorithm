@@ -1,3 +1,10 @@
+module.exports = {
+  TreeNode,
+  preOrderTraversal,
+  inOrderTraversal,
+  posOrderTraversal,
+}
+
 // 二叉树结构
 function TreeNode(val) {
   this.val = val
@@ -88,9 +95,41 @@ function breadthErgodic(root) {
   return arr
 }
 
-module.exports = {
-  TreeNode,
-  preOrderTraversal,
-  inOrderTraversal,
-  posOrderTraversal,
+// 查找有无节点
+function hasNode(root, tar) {
+  if (root == null) return false
+  return (
+    root.val == tar || findNode(root.left, tar) || findNode(root.right, tar)
+  )
+}
+
+// 查找节点路径
+function findNode(root, tar) {
+  let res = []
+  let path = []
+  backtrack(root)
+  return res
+
+  function backtrack(root) {
+    path.push(root.val) //压入值，配合getNode。根据情况可以改为压入节点（时间，空间变差）
+    if (root.val == tar) {
+      res.push([...path])
+    }
+    if (root.left != null) backtrack(root.left)
+    if (root.right != null) backtrack(root.right)
+    path.pop()
+  }
+}
+
+// 返回值为tar的节点
+function getNode(root,tar){
+  let res
+  traversal(root)
+  function traversal(root){
+    if(root == null) return
+    if(root.val == tar) res = root
+    traversal(root.left)
+    traversal(root.right)
+  }
+  return res
 }
